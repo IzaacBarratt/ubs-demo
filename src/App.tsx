@@ -6,7 +6,7 @@ import { Application } from "./interfaces/application";
 function App() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [isAppLoading, setAppIsLoading] = useState(false);
-  const [selectedNavLayer, setSelectedNavLayer] = useState<string>("1.1.1");
+  const [selectedBCaps, setselectedBCaps] = useState<string>("1.1.1");
 
   useEffect(() => {
     async function fetchAppsAPI() {
@@ -20,8 +20,7 @@ function App() {
   }, [])
 
   function updateNavSelection(key: string) {
-    
-    setSelectedNavLayer(key)
+    setselectedBCaps(key)
   }
 
   return (
@@ -35,7 +34,7 @@ function App() {
           {}
           {
             (applications.length > 0) 
-             ? <NavigationTree applications={applications} selectedLayer={selectedNavLayer} onUpdateSelection={updateNavSelection}/>
+             ? <NavigationTree applications={applications} onUpdateSelection={updateNavSelection}/>
              : <p>Not ready yet</p>
           }
 

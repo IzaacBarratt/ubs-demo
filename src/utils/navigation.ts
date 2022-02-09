@@ -29,7 +29,7 @@ export function buildBcapsArrayIntoNavTree(totalItems: number[][], index: number
     // Bonus that using a numeric index on map means Object.keys() prints ordered list
     let splitList: { [title: number]: number[][] } = {}
 
-    if (totalItems == null || totalItems.length == 0) {
+    if (totalItems == null || totalItems.length === 0) {
         return [];
     }
 

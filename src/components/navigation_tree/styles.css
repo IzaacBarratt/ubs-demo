@@ -1,8 +1,25 @@
-.selected {
-    background-color: blue;
+/* // .selected {
+//     background-color: blue;
+//     padding: 20px;
+// }
+
+// .child {
+//     padding: 15px;
+//     border-bottom: 1px solid black;
+// } */
+
+
+.nav-tree {
     padding: 20px;
 }
 
-.child {
-    padding: 15px;
+.nav-tree__item-title {
+    max-width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav-tree__item-children {
+    margin-left: 20px;
 }

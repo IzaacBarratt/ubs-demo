@@ -1,4 +1,4 @@
 export interface NavTreeHierarchy {
     title: string,
-    children: NavTreeHierarchy[]
+    children: NavTreeHierarchy[],
 }
