@@ -45,7 +45,9 @@ const NavigationTree: FC<NavigationTreeProps> = (props) => {
             // But parent needs to be aware too, so if function is set - emit selection upwards
             function sendUpdate() {
                 setSelectedLayer(currentPath);
-                onUpdateSelection?.call(currentPath);
+                if (onUpdateSelection) {
+                    onUpdateSelection(currentPath)
+                }
             }
 
             function togglePath() {

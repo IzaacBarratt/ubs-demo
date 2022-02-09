@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ApplicationViewer from "./components/application_viewer";
 import NavigationTree from "./components/navigation_tree";
 import { Application } from "./interfaces/application";
 
@@ -23,6 +24,8 @@ function App() {
     setselectedBCaps(key)
   }
 
+
+
   return (
     <div>
       <h1>Pharos Coding Exercise</h1>
@@ -31,10 +34,16 @@ function App() {
         <h2>components</h2>
         <div id="components">
           <h3>nav tree</h3>  
-          {}
           {
             (applications.length > 0) 
              ? <NavigationTree applications={applications} onUpdateSelection={updateNavSelection}/>
+             : <p>Not ready yet</p>
+          }
+        
+          <h3>app viewer</h3>  
+          {
+            (applications.length > 0) 
+             ? <ApplicationViewer applications={applications} selectedBCaps={selectedBCaps}/>
              : <p>Not ready yet</p>
           }
 
