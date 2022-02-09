@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import { getBCAPIndexfromApplication } from '../../utils/navigation';
+import { buildBcapsArrayIntoNavTree, getBCAPIndexfromApplication } from '../../utils/navigation';
 import './styles.css';
 import { Application } from '../../interfaces/application';
+import { NavTreeHierarchy } from '../../interfaces/navigation_tree';
 
 interface NavigationTreeProps {
     onUpdateSelection: Function | undefined
@@ -9,10 +10,9 @@ interface NavigationTreeProps {
     applications: Application[]
 }
 
-function generateDomElementsForTree(elements: string[], onSelectUpdate?: Function, selected?: string | undefined) {
-
+function generateDomElementsForTree(elements: NavTreeHierarchy[], onSelectUpdate?: Function, selected?: string | undefined) {
     return elements.map((n) => {
-        const isSelectedClass = (n == selected)
+        const isSelectedClass = (n.title == selected)
             ? 'selected'
             : ''
 
@@ -22,8 +22,15 @@ function generateDomElementsForTree(elements: string[], onSelectUpdate?: Functio
             }
         }
         return <>
-            <div onClick={sendUpdate}>
-                <p className={isSelectedClass}>{n}</p>
+            <div onClick={sendUpdate} key={n.title}>
+                <p className={isSelectedClass}>{n.title}</p>
+                {
+                    n.children != null && n.children.length > 0
+                        ? <div className="child">
+                            {generateDomElementsForTree(n.children, onSelectUpdate, selected)}
+                            </div>
+                        : <></>
+                }
             </div>
         </>
     })
@@ -36,39 +43,10 @@ const NavigationTree: FC<NavigationTreeProps> = (props) => {
         selectedLayer
     } = props;
 
-    const orderedApplications = applications.sort((a, b) => {
-        const aCaps = getBCAPIndexfromApplication(a)
-        const bCaps = getBCAPIndexfromApplication(b)
+    let allBCaps = applications.map((n) => getBCAPIndexfromApplication(n))
+    const navTree = buildBcapsArrayIntoNavTree(allBCaps);
 
-
-        let largestLength = (aCaps.length > bCaps.length)
-            ? aCaps.length
-            : bCaps.length;
-
-        for (let i = 0; i < largestLength; i++) {
-            let aCapIndex = aCaps[i]
-            let bCapIndex = bCaps[i]
-
-            if (aCapIndex == bCapIndex) continue;
-            return aCapIndex - bCapIndex
-        }
-
-        return 0
-    })
-
-    let uniqueObjKey: { [bcaps: string]: boolean } = {}
-
-    orderedApplications.forEach((n) => {
-        const bcaps = getBCAPIndexfromApplication(n)
-        const key = bcaps.join('.')
-
-        if (!uniqueObjKey[key]) {
-            uniqueObjKey[key] = true
-        }
-    })
-
-    const uniqueBcapKeys = Object.keys(uniqueObjKey)
-    const domElements = generateDomElementsForTree(uniqueBcapKeys, onUpdateSelection, selectedLayer)
+    const domElements = generateDomElementsForTree(navTree, onUpdateSelection, selectedLayer)
 
     return (
         <>
