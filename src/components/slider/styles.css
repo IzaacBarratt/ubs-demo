@@ -2,7 +2,6 @@
     padding: 10px;
 }
 .slider-container {
-    /* background-color: orange; */
     border: 1px black solid;
     padding-left: 20px;
     padding-right: 20px;
@@ -11,7 +10,6 @@
     position: relative;
     padding-top: 20px;
     max-width: 300px;
-    /* padding: 20px; */
 }
 .slider_bar-background{
     background-color: blue;

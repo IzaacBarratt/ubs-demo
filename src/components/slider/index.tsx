@@ -1,4 +1,4 @@
-import React, {FC, DragEvent, useState, useEffect, useRef} from 'react';
+import React, {FC, useState, useEffect, useRef} from 'react';
 import './styles.css';
 import { Application } from '../../interfaces/application';
 import { getSliderRangeForApplications } from '../../utils/application';
