@@ -1,0 +1,19 @@
+.app-viewer {
+    max-width: 800px;
+}
+
+.app-viewer_element {
+    /* background-color: rgb(228, 255, 228); */
+    padding: 20px;
+    border: 1px solid black;
+    width: 150px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.app-viewer_element-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

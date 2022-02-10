@@ -12,3 +12,25 @@
 .nav-tree__item-children {
     margin-left: 20px;
 }
+
+.nav-tree_item--selected {
+    background-color: lightblue;
+}
+
+.nav-tree_item-dropdown-toggle {
+    /* padding: 5px; */
+    /* border: 1px solid black; */
+    /* border-radius: 20px;
+    width: 5px;
+    transform: rotate(90deg); */
+    width: 0; 
+  height: 0; 
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  
+  border-top: 20px solid black;
+}   
+
+.nav-tree_item-dropdown-toggle--active {
+    transform: rotate(180deg);
+}

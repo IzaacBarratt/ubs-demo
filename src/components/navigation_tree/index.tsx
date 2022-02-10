@@ -38,7 +38,7 @@ const NavigationTree: FC<NavigationTreeProps> = (props) => {
                 ? parentPath + '.' + n.title
                 : n.title
             const isSelectedClass = (currentPath === selectedLayer)
-                ? 'selected'
+                ? 'nav-tree_item--selected'
                 : ''
 
             // Component has it's own internal state for knowing whats selected
@@ -68,14 +68,17 @@ const NavigationTree: FC<NavigationTreeProps> = (props) => {
             // Check if current child is on open list
             const pathIsOpen = expandedLayers[currentPath] === true
             const hasChildren = n.children != null && n.children.length > 0;
+            const activeClass = pathIsOpen 
+                ? "nav-tree_item-dropdown-toggle--active"
+                : ""
 
             return <>
-                <div className="nav-tree__item" key={currentPath}>
-                    <div className="nav-tree__item-title" onClick={sendUpdate}>
-                        <p className={isSelectedClass}>{"Business Capabilities " + currentPath}</p>
+                <div className={"nav-tree__item "} key={currentPath}>
+                    <div className={"nav-tree__item-title " + isSelectedClass} onClick={sendUpdate}>
+                        <p>{"Business Capabilities " + currentPath}</p>
                         {
                             hasChildren
-                                ? <div onClick={togglePath} className="nav-tree_item-dropdown-toggle">{">"}</div>
+                                ? <div onClick={togglePath} className={"nav-tree_item-dropdown-toggle " + activeClass}/> 
                                 : <></>
                         }
                     </div>

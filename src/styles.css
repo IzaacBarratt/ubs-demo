@@ -1,0 +1,17 @@
+#main-panel {
+    background-color: rgb(224, 171, 171);
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+}
+
+.main-panel_navigation {
+    padding: 20px;
+    border: 1px solid black;
+    width: 300px;
+}
+
+.main-panel_app-viewer {
+    padding: 20px;
+    
+}

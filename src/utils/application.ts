@@ -1,6 +1,6 @@
 import { Application } from "../interfaces/application";
+import { MinMaxRange } from "../interfaces/common";
 import { escapeRegex } from "./common";
-import { getBCAPIndexfromApplication } from "./navigation";
 
 export function filterApplicationsByBCap(applications: Application[], selectedBCaps?: string): Application[] {
     if (!selectedBCaps) return []
@@ -18,4 +18,25 @@ export function filterApplicationsByBCap(applications: Application[], selectedBC
     })
 
     return matchingApps;
+}
+
+export function getSliderRangeForApplications(applications: Application[]): MinMaxRange {
+    const defaultMin = 0;
+    let maxValue = 0;
+
+    applications.forEach((n) => {
+        if (n.spend > maxValue) {
+            maxValue = n.spend
+        }
+    })
+
+    return {
+        minValue: defaultMin,
+        maxValue
+    }
+}
+
+export function filterApplicationsBySpending(applications: Application[], spending?: number): Application[] {
+    if (spending == null || spending == undefined) return applications;
+    return applications.filter((n) => n.spend <= spending);
 }

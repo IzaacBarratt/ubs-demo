@@ -1,0 +1,38 @@
+.slider {
+    padding: 10px;
+}
+.slider-container {
+    /* background-color: orange; */
+    border: 1px black solid;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.slider_bar {   
+    position: relative;
+    padding-top: 20px;
+    max-width: 300px;
+    /* padding: 20px; */
+}
+.slider_bar-background{
+    background-color: blue;
+    border: 1px white solid;
+    height: 10px;
+}
+.slider_bar-indicator {
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+    border-radius: 100px;
+}
+
+.slider_bar-indicator p {
+    position: relative;
+    top: 20px;
+}
+
+.slider_bar--range-display {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
