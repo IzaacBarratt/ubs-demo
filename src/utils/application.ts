@@ -1,4 +1,5 @@
 import { Application } from "../interfaces/application";
+import { escapeRegex } from "./common";
 import { getBCAPIndexfromApplication } from "./navigation";
 
 export function filterApplicationsByBCap(applications: Application[], selectedBCaps?: string): Application[] {
@@ -6,10 +7,12 @@ export function filterApplicationsByBCap(applications: Application[], selectedBC
 
     let matchingApps: Application[] = []
     applications.forEach((n) => {
-        const bcaps = n.BCAP3
-
-        // Simple string comparison to test, can be improved by using actual numbers and possibly regex
-        if (bcaps.match(' ' + selectedBCaps)) {
+        const bCapString = n.BCAP3
+        const regexFriendlyBCaps = escapeRegex(selectedBCaps)
+        // Regex used to check before match is not (number or .) and checks that after there is no digit 
+        // So will match for end of line, space and larger numbers (ie 2 will match 2.2 but not 3.2)
+        const selectionRegex = new RegExp("(?<!\\d|\\.)" + regexFriendlyBCaps + "(?!\\d)")
+        if (bCapString.match(selectionRegex)) {
             matchingApps.push(n)
         }
     })
